@@ -1,7 +1,21 @@
-import React from "react";
+import { useParams } from "react-router-dom";
+import { fetchCountry } from "../api";
+import { useEffect, useState } from "react";
 
 const Country = () => {
-  return <div>Country</div>;
+  const pararms = useParams();
+  const [country, setCountry] = useState(null);
+
+  const setInitData = async () => {
+    const data = await fetchCountry(pararms.code);
+    setCountry(data);
+  };
+
+  useEffect(() => {
+    setInitData();
+  }, [pararms.code]);
+
+  return <div>Country : {pararms.code}</div>;
 };
 
 export default Country;
