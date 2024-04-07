@@ -1,7 +1,21 @@
-import React from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Search from "./pages/Search";
+import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
+import Layout from "./components/Layout";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/search" element={<Search />}></Route>
+        <Route path="/country" element={<NotFound />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    </Layout>
+  );
 };
 
 export default App;
