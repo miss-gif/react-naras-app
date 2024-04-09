@@ -1,6 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 import { fetchSearchResults } from "../api";
 import { useEffect, useState } from "react";
+import Searchbar from "./../components/Searchbar";
+import CountryList from "./../components/CountryList";
+import style from "./Search.module.css";
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams(); // 현재 URL의 쿼리 매개변수를 가져와서 searchParams 상태로 설정합니다.
@@ -20,7 +23,15 @@ const Search = () => {
   }, [q]);
 
   // 검색어를 화면에 표시합니다.
-  return <div>{searchParams.get("q")}</div>;
+  return (
+    <div className={style.container}>
+      <Searchbar q={q}></Searchbar>
+      <div>
+        <b>{q}</b> 검색 결과
+      </div>
+      <CountryList countries={countries}></CountryList>
+    </div>
+  );
 };
 
 export default Search;
