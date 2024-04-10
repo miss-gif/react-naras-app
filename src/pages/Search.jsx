@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Searchbar from "./../components/Searchbar";
 import CountryList from "./../components/CountryList";
 import style from "./Search.module.css";
+import usePageTitle from "../hooks/usePageTitle";
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams(); // 현재 URL의 쿼리 매개변수를 가져와서 searchParams 상태로 설정합니다.
@@ -21,6 +22,8 @@ const Search = () => {
   useEffect(() => {
     setInitialData(); // setInitialData 함수를 호출하여 초기 데이터를 설정합니다.
   }, [q]);
+
+  usePageTitle(`${q} : NARAS 검색`);
 
   // 검색어를 화면에 표시합니다.
   return (

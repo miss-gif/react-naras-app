@@ -7,14 +7,20 @@ export default function Country() {
   const pararms = useParams();
   const [country, setCountry] = useState();
 
-  const setInitData = async () => {
-    const data = await fetchCountry(pararms.code);
-    setCountry(data);
-  };
-
   useEffect(() => {
+    const setInitData = async () => {
+      const data = await fetchCountry(pararms.code);
+      setCountry(data);
+    };
+
     setInitData();
   }, [pararms.code]);
+
+  useEffect(() => {
+    if (country) {
+      document.title = `${country.commonName} 상세정보`;
+    }
+  }, [country]);
 
   if (!country) {
     return <div>Loading ...</div>;
